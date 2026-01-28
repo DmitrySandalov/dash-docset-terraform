@@ -25,8 +25,10 @@ function clone {
 }
 
 mkdir -p $dstdir/terraform
+mkdir -p $dstdir/terraform-docs
 
 clone https://github.com/hashicorp/terraform.git v$terraform_version $dstdir/terraform
+clone https://github.com/hashicorp/web-unified-docs.git main $dstdir/terraform-docs
 
 while read line; do
     name=$(echo $line | cut -d' ' -f1)

@@ -5,7 +5,21 @@ readonly srcdir=$1
 readonly dstdir=$2
 
 function emit_terraform_rules {
-    local terraform_docs_dir="$srcdir/terraform/website/docs"
+    # Terraform docs have moved to web-unified-docs repo
+    # Extract major.minor version (e.g., "1.14.3" -> "v1.14.x")
+    local terraform_version=$(cat version/terraform)
+    local version_major_minor=$(echo $terraform_version | cut -d. -f1,2)
+    local terraform_docs_dir="$srcdir/terraform-docs/content/terraform/v${version_major_minor}.x/docs"
+
+    # Fallback to old location if new location doesn't exist
+    if [[ ! -d "$terraform_docs_dir" ]]; then
+        terraform_docs_dir="$srcdir/terraform/website/docs"
+    fi
+
+    if [[ ! -d "$terraform_docs_dir" ]]; then
+        1>&2 echo "Error: Cannot find Terraform docs at $terraform_docs_dir"
+        exit 1
+    fi
 
     find $terraform_docs_dir -type f -name '*.mdx' -print0 \
     | while read -d $'\0' input_file
