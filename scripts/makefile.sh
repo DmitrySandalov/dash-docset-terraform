@@ -73,6 +73,7 @@ function emit_rule {
     barename="${barename%.markdown}"
     barename="${barename%.md}"
     barename="${barename%.mdx}"
+    barename="${barename%.html}"
 
     local output_file
     case $(realpath --relative-to $input_dir $(dirname $input_file)) in
