@@ -336,6 +336,14 @@ def derive_resource_name(metadata_page_title: str, page_h1: str, output_file: st
     metadata_page_title = metadata_page_title.strip()
     page_h1 = page_h1.strip()
 
+    # For Azure azapi provider: Microsoft.*, Nginx.*, Qumulo.* files are guides
+    # showing Azure resource types, not Terraform resources. Use filename as index name.
+    basename_no_ext = output_path_components[-1].rsplit('.', 1)[0] if output_path_components else ''
+    if basename_no_ext and (basename_no_ext.startswith('Microsoft.') or
+                           basename_no_ext.startswith('Nginx.') or
+                           basename_no_ext.startswith('Qumulo.')):
+        return basename_no_ext
+
     hardcoded = [
         (metadata_page_title, r'^External (?:Data Source|Resource)$', 'external'),
         (metadata_page_title, r'^HTTP Data Source$', 'http'),

@@ -69,7 +69,10 @@ function emit_rule {
     local provider_dir=$4
 
     local reldir=$(realpath -m --relative-to $input_dir $(dirname $input_file))
-    local barename=$(basename "$input_file" | cut -d. -f1)
+    local barename=$(basename "$input_file")
+    barename="${barename%.markdown}"
+    barename="${barename%.md}"
+    barename="${barename%.mdx}"
 
     local output_file
     case $(realpath --relative-to $input_dir $(dirname $input_file)) in
