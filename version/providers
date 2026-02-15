@@ -12,7 +12,7 @@ gitlabhq/gitlab https://github.com/gitlabhq/terraform-provider-gitlab v18.8.2
 grafana/grafana https://github.com/grafana/terraform-provider-grafana v4.25.0
 hashicorp/ad https://github.com/hashicorp/terraform-provider-ad v0.5.0
 hashicorp/archive https://github.com/hashicorp/terraform-provider-archive v2.7.1
-hashicorp/aws https://github.com/hashicorp/terraform-provider-aws v6.32.0
+hashicorp/aws https://github.com/hashicorp/terraform-provider-aws v6.32.1
 hashicorp/awscc https://github.com/hashicorp/terraform-provider-awscc v1.71.0
 hashicorp/azuread https://github.com/hashicorp/terraform-provider-azuread v3.7.0
 hashicorp/azurerm https://github.com/hashicorp/terraform-provider-azurerm v4.60.0
